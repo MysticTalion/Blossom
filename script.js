@@ -33,7 +33,6 @@ if (contactForm) {
 }
 
 // ===== CHARGEMENT DES TWEETS =====
-// Utilise le widget Twitter officiel pour afficher les tweets en temps réel
 function loadTweets() {
     const container = document.getElementById('tweets-container');
     
@@ -69,57 +68,57 @@ function loadTweets() {
 }
 
 // ===== INFOS START.GG =====
-// NOTE: Pour récupérer les vraies données, vous devrez utiliser l'API Start.gg
-// Documentation: https://developer.start.gg/docs/intro
-// Vous aurez besoin d'une clé API
-
+// Récupère les données via Netlify Functions (token sécurisé côté serveur)
 function loadStartGGData() {
-  fetch("/.netlify/functions/startgg?slug=tournament/blossom")
-    .then(res => res.json())
-    .then(data => {
-      const tournament = data.data.tournament;
+    fetch("/.netlify/functions/startgg?slug=tournament/blossom")
+        .then(res => res.json())
+        .then(data => {
+            const tournament = data.data.tournament;
 
-      document.getElementById('participant-count').textContent =
-        tournament.numAttendees;
+            // Nombre total de participants
+            document.getElementById('participant-count').textContent = 
+                tournament.numAttendees || '--';
 
-      const date = new Date(tournament.startAt * 1000);
-      document.getElementById('tournament-date').textContent =
-        date.toLocaleDateString('fr-FR');
+            // Date du tournoi
+            const date = new Date(tournament.startAt * 1000);
+            document.getElementById('tournament-date').textContent = 
+                date.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' });
 
-      const ssbuEvent = tournament.events.find(e =>
-        e.name.toLowerCase().includes("ssbu")
-      );
+            // Trouver l'événement SSBU spécifique
+            const ssbuEvent = tournament.events.find(e =>
+                e.name.toLowerCase().includes("ssbu") || 
+                e.name.toLowerCase().includes("ultimate")
+            );
 
-      if (ssbuEvent) {
-        document.getElementById('entrant-count').textContent =
-          ssbuEvent.numEntrants;
-      }
-    })
-    .catch(err => console.error("Start.gg error:", err));
-}
-
-        
-        // Mettre à jour la date
-        const date = new Date(tournament.startAt * 1000);
-        const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
-        document.getElementById('tournament-date').textContent = formattedDate;
-    })
-    .catch(error => {
-        console.error('Erreur lors du chargement des données Start.gg:', error);
-    });
-    */
+            if (ssbuEvent && document.getElementById('entrant-count')) {
+                document.getElementById('entrant-count').textContent = 
+                    ssbuEvent.numEntrants || '--';
+            }
+        })
+        .catch(err => {
+            console.error("Erreur Start.gg:", err);
+            // Valeurs par défaut en cas d'erreur
+            document.getElementById('participant-count').textContent = '--';
+            document.getElementById('tournament-date').textContent = '--/--';
+            if (document.getElementById('entrant-count')) {
+                document.getElementById('entrant-count').textContent = '--';
+            }
+        });
 }
 
 // ===== MISE À JOUR AUTOMATIQUE TWITCH EMBED =====
 // Le parent doit correspondre au domaine où vous hébergez le site
 function updateTwitchEmbed() {
     const twitchIframe = document.querySelector('.twitch-embed iframe');
-    const currentDomain = window.location.hostname;
     
-    // Si vous hébergez sur GitHub Pages, le domaine sera : votre-username.github.io
-    // Modifiez cette ligne avec votre vrai domaine une fois en ligne
-    if (currentDomain !== 'localhost' && currentDomain !== '127.0.0.1') {
-        twitchIframe.src = `https://player.twitch.tv/?channel=blossom_ssb&parent=${currentDomain}`;
+    if (twitchIframe) {
+        const currentDomain = window.location.hostname;
+        
+        // Mise à jour du domaine parent pour Twitch
+        // Fonctionne pour GitHub Pages, Netlify, ou votre propre domaine
+        if (currentDomain !== 'localhost' && currentDomain !== '127.0.0.1') {
+            twitchIframe.src = `https://player.twitch.tv/?channel=blossom_ssb&parent=${currentDomain}`;
+        }
     }
 }
 
@@ -130,7 +129,7 @@ window.addEventListener('load', () => {
     updateTwitchEmbed();
 });
 
-// ===== ACTUALISATION AUTOMATIQUE (optionnel) =====
+// ===== ACTUALISATION AUTOMATIQUE =====
 // Actualiser les données Start.gg toutes les 5 minutes
 setInterval(() => {
     loadStartGGData();
