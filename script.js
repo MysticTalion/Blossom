@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (page) page.classList.add("active");
         if (link) link.classList.add("active");
-
-        history.replaceState(null, "", `#${id}`);
     }
 
     links.forEach(link => {
@@ -23,6 +21,39 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const hash = location.hash.replace("#", "");
-    if (hash) showPage(hash);
+    // Loader hide
+    window.addEventListener("load", () => {
+        document.getElementById("loader").style.display = "none";
+    });
+
+    loadStartGG();
 });
+
+// ==========================
+// LOAD START.GG VIA NETLIFY FUNCTION
+// ==========================
+async function loadStartGG() {
+
+    try {
+        const res = await fetch(`/.netlify/functions/startgg?slug=tournament/blossom`);
+        const json = await res.json();
+
+        const tournament = json.data.tournament;
+        if (!tournament) return;
+
+        // Participants
+        document.getElementById("participant-count").textContent = tournament.numAttendees;
+
+        // Date
+        const date = new Date(tournament.startAt * 1000);
+        document.getElementById("tournament-date").textContent =
+            date.toLocaleDateString("fr-FR");
+
+        // Bouton inscription
+        document.getElementById("register-link").href =
+            `https://start.gg/blossom/register`;
+
+    } catch (err) {
+        console.error("Erreur lors du fetch StartGG:", err);
+    }
+}
