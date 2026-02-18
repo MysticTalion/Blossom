@@ -7,14 +7,11 @@
     <meta name="description" content="Association Blossom – Weeklies et tournois Super Smash Bros Ultimate.">
     <link rel="icon" type="image/png" href="https://files.catbox.moe/nul6qu.png">
     <link rel="stylesheet" href="style.css">
-    <script async src="https://platform.twitter.com/widgets.js"></script>
+    <!-- Scripts Twitter et Twitch -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
 </head>
 <body>
-
-<!-- LOADER -->
-<div id="loader">
-    <img src="https://files.catbox.moe/nul6qu.png" alt="Blossom Logo" class="loader-logo">
-</div>
 
 <!-- NAVIGATION -->
 <nav>
@@ -33,33 +30,36 @@
     <p>Weeklies chaque mardi – Super Smash Bros Ultimate</p>
 </header>
 
-<main class="layout">
+<!-- LAYOUT 3 COLONNES -->
+<div class="main-container">
+    
+    <!-- COLONNE GAUCHE - TWITCH -->
+    <aside class="sidebar-left">
+        <h3>📺 Stream Live</h3>
+        <div id="twitch-embed"></div>
+        <a href="https://twitch.tv/blossom_ssb" target="_blank" class="twitch-link">
+            🎥 Suivre sur Twitch
+        </a>
+    </aside>
 
-    <!-- CONTENU PRINCIPAL -->
-    <div class="main-content">
-
-        <!-- ===================== PAGE ACCUEIL ===================== -->
+    <!-- COLONNE CENTRALE - CONTENU PRINCIPAL -->
+    <main class="main-content">
+        
+        <!-- PAGE ACCUEIL -->
         <section id="accueil" class="page active">
-
+            
             <!-- START.GG -->
             <div class="section">
                 <h2>🎮 Weekly Blossom</h2>
                 <p class="centered">Inscrivez-vous à notre weekly, <strong>tous les mardis</strong> !</p>
                 <div class="startgg-info">
-                    <div class="stat-box">
-                        <h3 id="participant-count">--</h3>
-                        <p>Inscrits</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3 id="tournament-date">--/--</h3>
-                        <p>Prochain tournoi</p>
+                    <div class="stat-box-single">
+                        <h3 id="tournament-date">--</h3>
+                        <p>Prochain mardi</p>
                     </div>
                 </div>
                 <div class="centered" style="margin-top:1.5rem;">
-                    <a href="https://start.gg/blossom/register"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="cta-button">
+                    <a href="https://start.gg/blossom/register" target="_blank" class="cta-button">
                         🎯 S'inscrire sur Start.gg
                     </a>
                 </div>
@@ -68,72 +68,35 @@
                 </p>
             </div>
 
-            <!-- TWITCH -->
-            <div class="section">
-                <h2>📺 Stream en direct</h2>
-                <div id="twitch-embed"></div>
-                <div class="centered" style="margin-top:1rem;">
-                    <a href="https://twitch.tv/blossom_ssb"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="cta-button">
-                        🎥 Suivre sur Twitch
-                    </a>
-                </div>
-            </div>
-
-            <!-- GRAPHIQUES WEEKLIES -->
+            <!-- GRAPHIQUES -->
             <div class="section">
                 <h2>📊 Résultats des Weeklies</h2>
-                <p style="color:#888; margin-bottom:1rem;">
-                    Ajoutez vos graphiques en copiant le bloc commenté ci-dessous dans le code.
-                </p>
                 <div class="graphics-grid">
-
-                    <!-- =====================================================
-                         POUR AJOUTER UN GRAPHIQUE, COPIEZ CE BLOC :
-
-                    <div class="graphic-item">
-                        <img src="URL_CATBOX_ICI" alt="Weekly #XX">
-                        <h3>Weekly #XX</h3>
-                        <p>XX/XX/2026</p>
-                    </div>
-
-                    ===================================================== -->
-
-                    <!-- EXEMPLE (supprimez quand vous avez vos vraies images) -->
+                    <!-- EXEMPLE - REMPLACEZ PAR VOS VRAIS GRAPHIQUES -->
                     <div class="graphic-item">
                         <img src="https://via.placeholder.com/400x300/ffb6d9/ffffff?text=Weekly+%231" alt="Weekly #1">
                         <h3>Weekly #1</h3>
                         <p>XX/XX/2026</p>
                     </div>
-
+                    
+                    <!-- POUR AJOUTER UN GRAPHIQUE, COPIEZ CE BLOC :
+                    <div class="graphic-item">
+                        <img src="URL_VOTRE_IMAGE" alt="Weekly #XX">
+                        <h3>Weekly #XX</h3>
+                        <p>DD/MM/YYYY</p>
+                    </div>
+                    -->
                 </div>
             </div>
 
         </section>
 
-        <!-- ===================== PAGE MEMBRES ===================== -->
+        <!-- PAGE MEMBRES -->
         <section id="membres" class="page">
             <div class="section">
                 <h2>👥 Notre Équipe</h2>
                 <div class="members-grid">
-
-                    <!-- =====================================================
-                         POUR AJOUTER UN MEMBRE, COPIEZ CE BLOC :
-
-                    <article class="member-card">
-                        <div class="member-sprites">
-                            <img src="URL_SPRITE_1" alt="Personnage 1">
-                            <img src="URL_SPRITE_2" alt="Personnage 2">
-                        </div>
-                        <h3>Pseudo</h3>
-                        <p class="member-role">Rôle</p>
-                        <p class="member-chars">🎮 Personnage 1, Personnage 2</p>
-                    </article>
-
-                    ===================================================== -->
-
+                    
                     <article class="member-card">
                         <div class="member-sprites">
                             <img src="https://via.placeholder.com/60/ff69b4/ffffff?text=🎮" alt="Personnage">
@@ -141,7 +104,6 @@
                         <h3>River</h3>
                         <p class="member-role">Head TO & Joueur</p>
                         <p class="member-chars">🎮 ???</p>
-                        <p class="description">Un peu notre papa à tous...</p>
                     </article>
 
                     <article class="member-card">
@@ -346,26 +308,25 @@
             </div>
         </section>
 
-        <!-- ===================== PAGE CONTACT ===================== -->
+        <!-- PAGE CONTACT -->
         <section id="contact" class="page">
             <div class="section">
                 <h2>📧 Nous contacter</h2>
                 <p style="margin-bottom:2rem; color:#666;">
-                    Une question, une suggestion, une demande de partenariat ? N'hésitez pas à nous écrire !
+                    Une question, une suggestion, une demande de partenariat ?
                 </p>
-
                 <div class="contact-options">
                     <a href="mailto:teamblossom.pro@gmail.com" class="contact-card">
                         <span class="contact-icon">📬</span>
                         <h3>Email</h3>
                         <p>teamblossom.pro@gmail.com</p>
                     </a>
-                    <a href="https://x.com/blossom_ssbu" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <a href="https://x.com/blossom_ssbu" target="_blank" class="contact-card">
                         <span class="contact-icon">🐦</span>
                         <h3>Twitter / X</h3>
                         <p>@blossom_ssbu</p>
                     </a>
-                    <a href="https://www.instagram.com/blossom.ssbu" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <a href="https://www.instagram.com/blossom.ssbu" target="_blank" class="contact-card">
                         <span class="contact-icon">📸</span>
                         <h3>Instagram</h3>
                         <p>blossom.ssbu</p>
@@ -374,105 +335,58 @@
             </div>
         </section>
 
-        <!-- ===================== PAGE MENTIONS LÉGALES ===================== -->
+        <!-- PAGE MENTIONS LÉGALES -->
         <section id="mentions" class="page">
             <div class="section">
                 <h2>⚖️ Mentions légales</h2>
-
                 <div class="legal-section">
                     <h3>1. Éditeur du site</h3>
                     <p>
-                        Le site blossomsmash.xyz est édité par l'association <strong>[NOM COMPLET DE L'ASSOCIATION]</strong>, association loi 1901 en cours d'enregistrement.<br>
-                        <strong>Adresse :</strong> [ADRESSE DU SIÈGE SOCIAL]<br>
-                        <strong>Numéro RNA :</strong> [À COMPLÉTER À LA VALIDATION]<br>
-                        <strong>Responsable de publication :</strong> [NOM DU PRÉSIDENT]<br>
+                        Le site blossomsmash.xyz est édité par l'association <strong>[NOM COMPLET]</strong>.<br>
                         <strong>Email :</strong> teamblossom.pro@gmail.com
                     </p>
                 </div>
-
                 <div class="legal-section">
-                    <h3>2. Hébergement</h3>
+                    <h3>2. Propriété intellectuelle</h3>
                     <p>
-                        Ce site est hébergé par <strong>[NOM HÉBERGEUR]</strong><br>
-                        <strong>Adresse :</strong> [ADRESSE HÉBERGEUR]
+                        Super Smash Bros. Ultimate © Nintendo Co., Ltd.<br>
+                        Ce site est un site communautaire non officiel.
                     </p>
                 </div>
-
                 <div class="legal-section">
-                    <h3>3. Propriété intellectuelle</h3>
+                    <h3>3. Données personnelles (RGPD)</h3>
                     <p>
-                        L'ensemble des contenus présents sur ce site (textes, images, logo Blossom) sont la propriété exclusive de l'association Blossom, sauf mentions contraires.
-                        Toute reproduction, même partielle, est interdite sans autorisation préalable.
-                    </p>
-                    <p style="margin-top:0.8rem;">
-                        Super Smash Bros. Ultimate, Nintendo, ainsi que tous les personnages et éléments graphiques associés sont la propriété de <strong>Nintendo Co., Ltd.</strong>
-                        Ce site est un site communautaire non officiel, non affilié à Nintendo.
+                        Ce site ne collecte aucune donnée personnelle sans consentement.
+                        Pour toute question : teamblossom.pro@gmail.com
                     </p>
                 </div>
-
-                <div class="legal-section">
-                    <h3>4. Données personnelles (RGPD)</h3>
-                    <p>
-                        Ce site ne collecte aucune donnée personnelle sans votre consentement.
-                        Le formulaire de contact utilise votre adresse email uniquement pour vous répondre ; ces données ne sont jamais transmises à des tiers.
-                    </p>
-                    <p style="margin-top:0.8rem;">
-                        Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données.
-                        Pour exercer ces droits : <a href="mailto:teamblossom.pro@gmail.com" style="color:var(--rose-principal);">teamblossom.pro@gmail.com</a>
-                    </p>
-                </div>
-
-                <div class="legal-section">
-                    <h3>5. Cookies</h3>
-                    <p>
-                        Ce site n'utilise pas de cookies de tracking ou publicitaires.
-                        Des cookies techniques peuvent être déposés par les services embarqués (Twitch, Twitter/X) conformément à leurs propres politiques de confidentialité.
-                    </p>
-                </div>
-
-                <div class="legal-section">
-                    <h3>6. Liens externes</h3>
-                    <p>
-                        Ce site contient des liens vers des services tiers (Twitter/X, Twitch, Start.gg, Instagram).
-                        L'association Blossom ne peut être tenue responsable du contenu de ces sites externes.
-                    </p>
-                </div>
-
-                <div class="legal-section">
-                    <h3>7. Droit applicable</h3>
-                    <p>
-                        Les présentes mentions légales sont soumises au droit français.
-                        Tout litige relatif à l'utilisation de ce site relève de la compétence exclusive des tribunaux français.
-                    </p>
-                </div>
-
-                <p style="margin-top:2rem; color:#aaa; font-size:0.85rem; text-align:center;">
-                    Dernière mise à jour : février 2026
-                </p>
             </div>
         </section>
 
-    </div><!-- fin .main-content -->
+    </main>
 
-    <!-- SIDEBAR TWITTER -->
-    <aside class="sidebar">
+    <!-- COLONNE DROITE - TWITTER -->
+    <aside class="sidebar-right">
         <h3>🐦 Tweets</h3>
-        <a class="twitter-timeline"
-           data-width="300"
-           data-height="600"
-           data-theme="light"
-           data-chrome="noheader nofooter noborders"
-           href="https://twitter.com/blossom_ssbu">
-            Chargement...
-        </a>
+        <div id="twitter-container">
+            <a class="twitter-timeline"
+               data-width="280"
+               data-height="600"
+               data-theme="light"
+               data-chrome="noheader nofooter noborders"
+               href="https://twitter.com/blossom_ssbu">
+                Chargement des tweets...
+            </a>
+        </div>
     </aside>
 
-</main>
+</div>
 
 <footer>
     🌸 Blossom © 2026 — Super Smash Bros Ultimate © Nintendo Co., Ltd.
 </footer>
 
-<script src="script.js" defer></script>
+<script src="script.js"></script>
+
 </body>
 </html>
