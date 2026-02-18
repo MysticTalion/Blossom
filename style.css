@@ -1,19 +1,263 @@
-/* ===== HEADER LOGO ===== */
-.header-logo {
-    width: 120px; /* MODIFIEZ LA TAILLE ICI (80px, 150px, 200px...) */
-    height: auto;
-    display: block;
-    margin: 0 auto 1rem; /* MODIFIEZ L'EMPLACEMENT : 
-                            margin: 0 auto = centré
-                            margin: 0 0 1rem 0 = à gauche
-                            margin: 0 0 1rem auto = à droite */
+/* ===== COULEURS ===== */
+:root {
+    --rose-principal: #ff69b4;
+    --rose-clair: #ffb6d9;
+    --rose-fonce: #db4d8f;
+    --blanc: #ffffff;
+    --blanc-casse: #fef5f9;
+    --gris-texte: #2d2d2d;
 }
 
-/* ===== MEMBRES - 4 PAR LIGNE AVEC GRADIENTS INDIVIDUELS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fef5f9 0%, #fff0f7 100%);
+    color: var(--gris-texte);
+    line-height: 1.6;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+    background: var(--blanc);
+    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+nav a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--gris-texte);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--rose-principal);
+    border-bottom-color: var(--rose-principal);
+    background: var(--blanc-casse);
+}
+
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, var(--rose-principal), var(--rose-fonce));
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.header-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== LAYOUT 3 COLONNES ===== */
+.main-container {
+    max-width: 1600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 350px 1fr 320px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* ===== COLONNE GAUCHE - TWITCH ===== */
+.sidebar-left {
+    background: white;
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
+    border: 2px solid var(--rose-clair);
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar-left h3 {
+    color: var(--rose-principal);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#twitch-embed {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.twitch-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--rose-principal);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.twitch-link:hover {
+    color: var(--rose-fonce);
+}
+
+/* ===== COLONNE DROITE - TWITTER ===== */
+.sidebar-right {
+    background: white;
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
+    border: 2px solid var(--rose-clair);
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar-right h3 {
+    color: var(--rose-principal);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#twitter-container {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
+.main-content {
+    min-height: 500px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.section {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
+    border: 2px solid var(--rose-clair);
+}
+
+.section h2 {
+    color: var(--rose-principal);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--rose-clair);
+}
+
+/* ===== START.GG ===== */
+.startgg-info {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.stat-box-single {
+    background: linear-gradient(135deg, var(--rose-clair), var(--rose-principal));
+    color: white;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 250px;
+}
+
+.stat-box-single h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-box-single p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--rose-principal);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+}
+
+.cta-button:hover {
+    background: var(--rose-fonce);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
+}
+
+.centered {
+    text-align: center;
+}
+
+/* ===== GRAPHIQUES ===== */
+.graphics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.graphic-item {
+    background: var(--blanc-casse);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid var(--rose-clair);
+}
+
+.graphic-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.graphic-item h3 {
+    color: var(--rose-principal);
+    margin-bottom: 0.5rem;
+}
+
+/* ===== MEMBRES ===== */
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cartes par ligne */
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
@@ -24,7 +268,6 @@
     text-align: center;
     border: 2px solid var(--rose-clair);
     transition: all 0.3s;
-    /* LE GRADIENT EST MAINTENANT DANS LE HTML INLINE - voir ci-dessous */
 }
 
 .member-card:hover {
@@ -57,26 +300,124 @@
     font-weight: 600;
     color: var(--rose-fonce);
     margin-bottom: 0.3rem;
+    font-size: 0.9rem;
 }
 
 .member-chars {
     color: #666;
     font-size: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 
-/* RESPONSIVE - 2 par ligne sur tablette, 1 sur mobile */
-@media (max-width: 1024px) {
-    .members-grid {
-        grid-template-columns: repeat(2, 1fr);
+/* ===== CONTACT ===== */
+.contact-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.contact-card {
+    background: var(--blanc-casse);
+    border: 2px solid var(--rose-clair);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--gris-texte);
+    transition: all 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+}
+
+.contact-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+    color: var(--rose-principal);
+    margin-bottom: 0.5rem;
+}
+
+/* ===== MENTIONS LÉGALES ===== */
+.legal-section {
+    margin-bottom: 2rem;
+}
+
+.legal-section h3 {
+    color: var(--rose-principal);
+    margin-bottom: 1rem;
+}
+
+.legal-section p {
+    line-height: 1.8;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: var(--blanc);
+    color: var(--gris-texte);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-top: 3px solid var(--rose-clair);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1400px) {
+    .main-container {
+        grid-template-columns: 300px 1fr 280px;
+    }
+    
+    #twitch-embed {
+        height: 400px;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar-left,
+    .sidebar-right {
+        position: static;
+    }
+    
+    .members-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .header-logo {
+        width: 80px;
+    }
+    
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    nav a {
+        padding: 0.8rem 1rem;
+    }
+}
+
+@media (max-width: 500px) {
     .members-grid {
         grid-template-columns: 1fr;
     }
     
-    .header-logo {
-        width: 80px; /* Logo plus petit sur mobile */
+    .section {
+        padding: 1.5rem;
     }
 }
