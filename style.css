@@ -64,10 +64,33 @@ header {
     padding: 2rem 1rem;
 }
 
+/* ===== LOGO - MODIFIEZ ICI ===== */
 .header-logo {
+    /* TAILLE : Changez cette valeur (50px, 100px, 150px, 200px...) */
     width: 100px;
     height: auto;
-    margin-bottom: 1rem;
+    
+    /* POSITION : Choisissez une de ces options */
+    /* Option 1 - CENTRÉ (par défaut) : */
+    margin: 0 auto 1rem auto;
+    display: block;
+    
+    /* Option 2 - À GAUCHE : décommentez les 2 lignes ci-dessous
+    margin: 0 auto 1rem 0;
+    display: block;
+    */
+    
+    /* Option 3 - À DROITE : décommentez les 2 lignes ci-dessous
+    margin: 0 0 1rem auto;
+    display: block;
+    */
+    
+    /* ESPACEMENT VERTICAL : 
+       Changez "1rem" dans margin-bottom pour ajuster l'espace sous le logo
+       0.5rem = petit espace
+       1rem = espace normal (par défaut)
+       2rem = grand espace
+    */
 }
 
 header h1 {
